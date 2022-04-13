@@ -1,0 +1,131 @@
+SQL> create table employee(Id int, F_Name char(20), L_name char(20), Salary int );
+
+Table created.
+
+SQL> insert into employee values(1,'d', 'd', 500);
+
+1 row created.
+
+SQL> insert into employee values(1,'Deepraj', 'Singh', 600);
+
+1 row created.
+
+SQL>  insert into employee values(1,'Ayush', 'Singh', 500);
+
+1 row created.
+
+SQL> insert into employee values(1,'Vaibhav', 'Rai', 400);
+
+1 row created.
+
+SQL> select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+
+SQL>  insert into employee values(3,'Piyush', 'Singh', 300);
+
+1 row created.
+
+SQL> insert into employee values(8,'Vedant', 'Singh', 800);
+
+1 row created.
+
+SQL>  select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+         3 Piyush               Singh                       300                 
+         8 Vedant               Singh                       800                 
+
+6 rows selected.
+
+SQL> select * from employee order by SALARY;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         3 Piyush               Singh                       300                 
+         1 Vaibhav              Rai                         400                 
+         1 d                    d                           500                 
+         1 Ayush                Singh                       500                 
+         1 Deepraj              Singh                       600                 
+         8 Vedant               Singh                       800                 
+
+6 rows selected.
+
+SQL> select * from employee order by SALARY DESC;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         8 Vedant               Singh                       800                 
+         1 Deepraj              Singh                       600                 
+         1 d                    d                           500                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+         3 Piyush               Singh                       300                 
+
+6 rows selected.
+
+SQL>  select * from employee WHERE SALARY=500;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Ayush                Singh                       500                 
+
+SQL> select distinct id from employee;
+
+        ID                                                                      
+----------                                                                      
+         1                                                                      
+         8                                                                      
+         3                                                                      
+
+SQL> select * from employee WHERE F_Name LIKE 'p%';
+
+no rows selected
+
+SQL> select * from employee WHERE SALARY BETWEEN 500 AND 900;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         8 Vedant               Singh                       800                 
+
+SQL>  select * from employee WHERE F_Name LIKE '%h%';
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+         3 Piyush               Singh                       300                 
+
+SQL> select * from employee WHERE F_Name LIKE 'd%';
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+
+SQL>  select sum(SALARY) from employee;
+
+SUM(SALARY)                                                                     
+-----------                                                                     
+       3100                                                                     
+
+SQL> select avg(SALARY) from employee;
+
+AVG(SALARY)                                                                     
+-----------                                                                     
+ 516.666667                                                                     
+
+SQL> spool off;

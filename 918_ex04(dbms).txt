@@ -1,0 +1,154 @@
+SQL> create table score3(id int, name1 char(20), marks float );
+
+Table created.
+
+SQL> describe score3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+
+SQL> alter table score2 add (comment1 char(20));
+
+Table altered.
+
+SQL>  describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+ COMMENT1                                           CHAR(20)
+
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SCORE3                                                                          
+TABLE                                                                           
+                                                                                
+EMPLOYEE                                                                        
+TABLE                                                                           
+                                                                                
+SCORE2                                                                          
+TABLE                                                                           
+                                                                                
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+SCORE1                                                                          
+TABLE                                                                           
+                                                                                
+
+SQL> select * from score3;
+
+no rows selected
+
+SQL> select * from employee;
+
+no rows selected
+
+SQL> insert into employee values(1,'d', 'd', 500);
+
+1 row created.
+
+SQL> insert into employee values(1,'Deepraj', 'Singh', 600);
+
+1 row created.
+
+SQL> insert into employee values(1,'Ayush', 'Singh', 500);
+
+1 row created.
+
+SQL> insert into employee values(1,'Vaibhav', 'Rai', 400);
+
+1 row created.
+
+SQL> select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into employee values(6,'Rahul','Singh',300);
+
+1 row created.
+
+SQL> insert into employee values(4,'Mukesh','Pathak',800);
+
+1 row created.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+
+SQL> insert into employee values(4,'Mukesh','Pathak',800);
+
+1 row created.
+
+SQL> savepoint s;
+
+Savepoint created.
+
+SQL> insert into employee values(6,'Rahul','Singh',300);
+
+1 row created.
+
+SQL>  rollback to s;
+
+Rollback complete.
+
+SQL>  select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+         4 Mukesh               Pathak                      800                 
+
+SQL> savepoint s2;
+
+Savepoint created.
+
+SQL> delete from employee;
+
+5 rows deleted.
+
+SQL>  rollback to s2;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+        ID F_NAME               L_NAME                   SALARY                 
+---------- -------------------- -------------------- ----------                 
+         1 d                    d                           500                 
+         1 Deepraj              Singh                       600                 
+         1 Ayush                Singh                       500                 
+         1 Vaibhav              Rai                         400                 
+         4 Mukesh               Pathak                      800                 
+
+SQL> spool off;

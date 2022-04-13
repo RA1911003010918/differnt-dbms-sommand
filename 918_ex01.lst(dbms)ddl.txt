@@ -1,0 +1,74 @@
+SQL> create table score2(id int, name1 char(20), marks float );
+
+Table created.
+
+SQL> decribe score2;
+SP2-0734: unknown command beginning "decribe sc..." - rest of line ignored.
+SQL> describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+
+SQL> alter table score2 add (comment1 char(20));
+
+Table altered.
+
+SQL> describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+ COMMENT1                                           CHAR(20)
+
+SQL> alter table score1 modify (comment1 char(30));
+alter table score1 modify (comment1 char(30))
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> alter table score1 modify (comment1 char(30));
+alter table score1 modify (comment1 char(30))
+*
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> alter table score2 modify (comment1 char(30));
+
+Table altered.
+
+SQL> describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+ COMMENT1                                           CHAR(30)
+
+SQL> alter table score2 drop(comment1);
+
+Table altered.
+
+SQL> describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+
+SQL> truncate table score2;
+
+Table truncated.
+
+SQL> describe score2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER(38)
+ NAME1                                              CHAR(20)
+ MARKS                                              FLOAT(126)
+
+SQL> spool off;
